@@ -1,7 +1,7 @@
 {
     "name": "zwen-lab/sql-dsl",
     "description": "laravel api rate limit middleware",
-    "keywords": ["php", "elasticsearch", "dsl"],
+    "keywords": ["php", "elasticsearch", "sql", "dsl"],
     "license": "MIT",
     "authors": [
         {
