@@ -1,0 +1,20 @@
+{
+    "name": "zwen-lab/sql-dsl",
+    "description": "laravel api rate limit middleware",
+    "keywords": ["php", "elasticsearch", "dsl"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zwen",
+            "email": "291235020@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zwen\\SqlDsl\\": "src"
+        }
+    }
+}
