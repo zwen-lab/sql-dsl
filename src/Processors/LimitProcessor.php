@@ -53,7 +53,7 @@ class LimitProcessor extends AbstractProcessor {
                 $comma = $i;
                 break;
             }
-            if ($trim === "OFFSET") {
+            if (strtoupper($trim) === "OFFSET") {
                 $comma = $i;
                 $exchange = true;
                 break;

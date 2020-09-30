@@ -7,6 +7,7 @@ use Zwen\SqlDsl\Positions\PositionCalculator;
 class EsGrammar implements Grammar {
     public $parsed;
     private $Builderarr;
+    private $dsl = [];
     public $url = '';
     private $top_hits=0;
     private $top_hits_size=1;
@@ -63,7 +64,7 @@ class EsGrammar implements Grammar {
         //sql 转dsl
         $this->EsBuilder();
 
-        return $this->Builderarr;
+        return $this->dsl;
     }
 
     /**
@@ -119,6 +120,7 @@ class EsGrammar implements Grammar {
         //table
         if(isset($this->parsed['FROM']) && !empty($this->parsed['FROM'])){
             $this->table($this->parsed['FROM']);
+            $this->index($this->parsed['FROM']);
         }
         //insert
         if(isset($this->parsed['INSERT']) && !empty($this->parsed['INSERT'])){
@@ -180,6 +182,8 @@ class EsGrammar implements Grammar {
             $this->Builderarr['query']['match_all']=(object)array();
         }
 
+        $this->dsl['body'] = $this->Builderarr;
+
         return $this;
     }
     public function build(){
@@ -209,6 +213,14 @@ class EsGrammar implements Grammar {
         return $this->PostEs($this->Builderarr);
     }
 
+    public function index($arr)
+    {
+        list($index, $type) = explode('/', $arr[0]['base_expr']);
+
+        $this->dsl = compact('index', 'type');
+
+        return $this;
+    }
 
     private function table($arr){
         if(isset($this->parsed['DELETE']) && !empty($this->parsed['DELETE'])){
